@@ -18,8 +18,9 @@ $RECYCLE.BIN/
 out/
 
 # Test files
-test*.*
-try*.*
+test__*.*
+try__*.*
+__*.*
 
 # =========================
 # Operating System Files
