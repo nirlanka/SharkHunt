@@ -21,4 +21,4 @@ Recommended working environment: _IntelliJ IDEA (community), jnetpcap, Windows 8
 Currently, this is being developed under academic-project restrictions; but in a month, 
 the codebase and the ideas will be open to the general public. :-)
 
-Founders: Nirmal Lankathilaka, Narmadaa Baalasooriya, Madusha Jayawardhana.
+Founders: _Nirmal Lankathilaka, Narmadaa Baalasooriya, Madusha Jayawardhana_.
