@@ -104,9 +104,6 @@ public class Extractor {
         }
     };
 
-    // fieldnames
-    static String SRC="src", DEST="dest", SIZE="size", TYPE="type", SRC_PORT="src-port", DEST_PORT="dest-port";
-
     //// ?? another thread can do a Pcap.breakloop
 
 }
