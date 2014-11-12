@@ -5,7 +5,7 @@ Packet capturing, analyzing and extraction of security related data in Java.
 
 Recommended working environment: _IntelliJ IDEA (community), jNetPcap, Windows 8.1_
 
-### Main dev goals
+### planned development milestones
 
 - [x] read packets from a capture file (pcap)
 - [x] store (only) the header info (in memory)
