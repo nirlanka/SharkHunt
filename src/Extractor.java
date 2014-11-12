@@ -9,7 +9,6 @@ import org.jnetpcap.protocol.tcpip.Tcp;
 import org.jnetpcap.protocol.tcpip.Udp;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 //[]// save (completely) to JSON file
 
@@ -42,7 +41,7 @@ public class Extractor {
 
     long timestamp=0;
 
-    ArrayList<HashMap<String, String>> packets=new ArrayList<HashMap<String, String>>();
+    ArrayList<Packet> packets=new ArrayList<Packet>();
 
     PcapPacketHandler<ArrayList> pktHandler=new PcapPacketHandler<ArrayList>() {
 
@@ -57,13 +56,13 @@ public class Extractor {
             // IP PACKET
             //      src, dest (addr), protocol, size, time [id (not continuous)]
             if (pkt.hasHeader(ip)) {
-                HashMap<String, String> x=new HashMap<String, String>(3);
+                Packet x=new Packet();
 
-                x.put(SRC, ""+ FormatUtils.ip(ip.source()));
-                x.put(DEST, ""+ FormatUtils.ip(ip.destination()));
+                x.source = ""+ FormatUtils.ip(ip.source());
+                x.destination = ""+ FormatUtils.ip(ip.destination());
 
                 PcapHeader h=pkt.getCaptureHeader();
-                x.put(SIZE, ""+h.wirelen());
+                x.size = h.wirelen();
 
                 //[]// add port data
 
@@ -81,15 +80,15 @@ public class Extractor {
                     tcpCountTotal++;
                     // HTTP
                     if (pkt.hasHeader(http)) {
-                        x.put(TYPE, "HTTP");
+                        x.type = Packet.Type.HTTPHeader;
                         httpCount++;
                     }
                     else
-                        x.put(TYPE, "TCP");
+                        x.type = Packet.Type.TCP;
                 }
                 // UDP
                 else if (pkt.hasHeader(udp)) {
-                    x.put(TYPE, "UDP");
+                    x.type = Packet.Type.UDP;
                     udpCount++;
                 }
 
@@ -107,11 +106,6 @@ public class Extractor {
 
     // fieldnames
     static String SRC="src", DEST="dest", SIZE="size", TYPE="type", SRC_PORT="src-port", DEST_PORT="dest-port";
-
-    // defaults
-    enum Type {
-        HTTPHeader, TCP, UDP
-    }
 
     //// ?? another thread can do a Pcap.breakloop
 

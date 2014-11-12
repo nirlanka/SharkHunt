@@ -8,7 +8,7 @@ import java.util.*;
  */
 
 public class Display {
-    ArrayList<HashMap<String,String>> pckt_list;
+    ArrayList<Packet> pckt_list;
     int pcktCount;
 
     ArrayList<String> filters=new ArrayList<String>();
@@ -17,15 +17,15 @@ public class Display {
     String groupBy=SRC; // default grouping
 
     // CONSTRUCTOR
-    Display(ArrayList<HashMap<String,String>> pckt_list, int pcktCount) {
+    Display(ArrayList<Packet> pckt_list, int pcktCount) {
         this.pckt_list=pckt_list;
         this.pcktCount=pcktCount;
 
         showGroups(groupBy);
     }
 
-    ArrayList<HashMap<String,String>> group;
-    HashMap<String, ArrayList<HashMap<String,String>>> all_groups;
+    ArrayList<Packet> group;
+    HashMap<String, ArrayList<Packet>> all_groups;
     int groupPcktCount,
         filteredPcktCount;
     String  groupValue,
@@ -44,19 +44,19 @@ public class Display {
 
         //[ok]// sort by field
         Collections.sort(pckt_list, new __HashmapComparator(field));
-        all_groups=new HashMap<String, ArrayList<HashMap<String, String>>>();
+        all_groups=new HashMap<String, ArrayList<Packet>>();
 
         //[ok]// copy into all_group
 
         groupValue=pckt_list.get(0).get(field);
-        group=new ArrayList<HashMap<String, String>>();
+        group=new ArrayList<Packet>();
 
-        for (HashMap<String,String> pckt : pckt_list) {
+        for (Packet pckt : pckt_list) {
             tmpValue=pckt.get(field);
             if (!(tmpValue.equals(groupValue))) {
                 all_groups.put(groupValue, group);
                 groupValue=tmpValue;
-                group = new ArrayList<HashMap<String, String>>();
+                group = new ArrayList<Packet>();
             }
             group.add(pckt);
         }
@@ -71,7 +71,7 @@ public class Display {
             // for each packet
             groupPcktCount=0;
             filteredPcktCount=0;
-            for (HashMap<String,String> p : group) {
+            for (Packet p : group) {
                 if (showPacket(p, field)) {
                     filteredPcktCount++;
                 }
@@ -137,21 +137,21 @@ public class Display {
 
     void showAll() {}
 
-    boolean showPacket(HashMap<String,String> pckt, String field) {
+    boolean showPacket(Packet pckt, String field) {
         if (checkFilters(pckt)) {
             System.out.print("   ");
 
             if (!field.equals(SRC)) {
                 if (!field.equals(DEST))
-                    System.out.printf("%s >> %s  \t", pckt.get(SRC), pckt.get(DEST));
+                    System.out.printf("%s >> %s  \t", pckt.getSource(), pckt.getDestination());
                 else
-                    System.out.printf("<< %s\t", pckt.get(SRC));
+                    System.out.printf("<< %s\t", pckt.getSource());
             } else {
-                System.out.printf(">> %s\t", pckt.get(DEST));
+                System.out.printf(">> %s\t", pckt.getDestination());
             }
-            if (!field.equals(SIZE)) System.out.printf("  %s \t", pckt.get(SIZE));
+            if (!field.equals(SIZE)) System.out.printf("  %d \t", pckt.getSize());
 
-            if (!field.equals(TYPE)) System.out.printf("%s ", pckt.get(TYPE));
+            if (!field.equals(TYPE)) System.out.printf("%s ", pckt.getType().toString());
 
             System.out.println();
             return true;
@@ -159,11 +159,11 @@ public class Display {
         return false;
     }
 
-    boolean showPacket(HashMap<String,String> pckt) {
+    boolean showPacket(Packet pckt) {
         return showPacket(pckt, "");
     }
 
-    boolean checkFilters(HashMap<String, String> pckt) {
+    boolean checkFilters(Packet pckt) {
         if (hasFilters)
             for (String f : filters)
                 if (!(pckt.toString().toLowerCase().contains(f)))
@@ -171,7 +171,7 @@ public class Display {
         return true;
     }
 
-    void showField(HashMap<String,String> pckt, String field) {
+    void showField(Packet pckt, String field) {
         System.out.printf("%s\t", pckt.get(field));
     }
 
@@ -186,15 +186,15 @@ public class Display {
         System.out.printf("[%d]%s\n\n", n, short_line);
     }
 
-    private class __HashmapComparator implements Comparator<HashMap<String, String>> {
+    private class __HashmapComparator implements Comparator<Packet> {
         String key;
         public __HashmapComparator(String key) {
             this.key=key;
         }
         @Override
-        public int compare(HashMap<String,String> one, HashMap<String,String> two) {
+        public int compare(Packet one,Packet two) {
             if (key.equals(SIZE))
-                return Integer.parseInt(one.get(key))-Integer.parseInt(two.get(key));
+                return one.getSize()-two.getSize();
             return one.get(key).compareTo(two.get(key));
         }
     }

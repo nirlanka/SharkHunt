@@ -17,6 +17,10 @@ $RECYCLE.BIN/
 # IDEA Output directories
 out/
 
+# Test files
+test*.*
+try*.*
+
 # =========================
 # Operating System Files
 # =========================
