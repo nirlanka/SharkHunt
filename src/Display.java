@@ -207,5 +207,11 @@ public class Display {
     // field-names
     static String SRC="src", DEST="dest", SIZE="size", TYPE="type";
 
+
+    // defaults
+    enum Type {
+        HTTPHeader, TCP, UDP
+    }
+
 }
 
