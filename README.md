@@ -11,8 +11,8 @@ Recommended working environment: _IntelliJ IDEA (community), jNetPcap, Windows 8
 - [x] store (only) the header info (in memory)
 - [x] filter them with header info (only)
 - [x] change the in-memory storage system
-- [ ] a GUI &mdash; @NarmadaBalasooriya, @NirmalL
-- [ ] live capture module &mdash; @MadushaJ
+- [ ] a GUI &mdash; [ @NarmadaBalasooriya ](https://github.com/NarmadaBalasooriya "Narmada's GitHub"), [ @NirmalL ](https://github.com/NirmalL "Nirmal's GitHub")
+- [ ] live capture module &mdash; [ @MadushaJ ](https://github.com/madushaj "Madusha's GitHub")
 - [ ] ability to save them to disk
 
 These are just the initial goals. Once they're accomplished, we'll be moving on to much more interesting and hacking-related stuff.
