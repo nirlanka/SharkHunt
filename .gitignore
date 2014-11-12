@@ -17,9 +17,6 @@ $RECYCLE.BIN/
 # IDEA Output directories
 out/
 
-# IDEA configs dir
-.idea/
-
 # Test files
 test__*.*
 try__*.*
