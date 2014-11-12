@@ -10,9 +10,9 @@ Recommended working environment: _IntelliJ IDEA (community), jNetPcap, Windows 8
 - [x] read packets from a capture file (pcap)
 - [x] store (only) the header info (in memory)
 - [x] filter them with header info (only)
-- [ ] change the in-memory storage system (@NirmalL)
-- [ ] a GUI (@NarmadaBalasooriya)
-- [ ] live capture module (@MadushaJ)
+- [ ] change the in-memory storage system &mdash; @NirmalL
+- [ ] a GUI &mdash; @NarmadaBalasooriya
+- [ ] live capture module &mdash; @MadushaJ
 - [ ] ability to save them to disk
 
 These are just the initial goals. Once they're accomplished, we'll be moving on to much more interesting and hacking-related stuff.
