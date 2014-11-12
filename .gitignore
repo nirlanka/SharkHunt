@@ -15,7 +15,7 @@ $RECYCLE.BIN/
 *.msp
 
 # IDEA Output directories
-out/
+# out/
 
 # =========================
 # Operating System Files
