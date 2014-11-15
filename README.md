@@ -11,7 +11,7 @@ Recommended working environment: _IntelliJ IDEA (community), jNetPcap, Windows 8
 - [x] store (only) the header info (in memory)
 - [x] filter them with header info (only)
 - [x] change the in-memory storage system
-- [ ] a GUI &mdash; [ @NarmadaBalasooriya ](https://github.com/NarmadaBalasooriya "Narmada's GitHub"), [ @NirmalL ](https://github.com/NirmalL "Nirmal's GitHub")
+- [ ] a GUI &mdash; [ @NarmadaBalasooriya ](https://github.com/NarmadaBalasooriya "Narmada's GitHub"), [ @NirmalL ](https://github.com/NirmalL "Nirmal's GitHub") on the [ gui-fx branch ](https://github.com/NirmalL/SharkHunt/tree/gui-fx "tree/gui-fx")
 - [ ] live capture module &mdash; [ @MadushaJ ](https://github.com/madushaj "Madusha's GitHub")
 - [ ] ability to save them to disk
 
