@@ -194,7 +194,7 @@ public class Display {
         @Override
         public int compare(Packet one,Packet two) {
             if (key.equals(SIZE))
-                return one.getSize()-two.getSize();
+                return Integer.parseInt(one.getSize())-Integer.parseInt(two.getSize());
             return one.get(key).compareTo(two.get(key));
         }
     }

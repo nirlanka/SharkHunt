@@ -58,11 +58,11 @@ public class Extractor {
             if (pkt.hasHeader(ip)) {
                 Packet x=new Packet();
 
-                x.source = ""+ FormatUtils.ip(ip.source());
-                x.destination = ""+ FormatUtils.ip(ip.destination());
+                x.setSource(""+ FormatUtils.ip(ip.source()));
+                x.setDestination(""+ FormatUtils.ip(ip.destination()));
 
                 PcapHeader h=pkt.getCaptureHeader();
-                x.size = h.wirelen();
+                x.setSize(h.wirelen()+"");
 
                 //[]// add port data
 
@@ -80,15 +80,15 @@ public class Extractor {
                     tcpCountTotal++;
                     // HTTP
                     if (pkt.hasHeader(http)) {
-                        x.type = Packet.Type.HTTPHeader;
+                        x.setType(HTTPHeader);
                         httpCount++;
                     }
                     else
-                        x.type = Packet.Type.TCP;
+                        x.setType(TCP);
                 }
                 // UDP
                 else if (pkt.hasHeader(udp)) {
-                    x.type = Packet.Type.UDP;
+                    x.setType(UDP);
                     udpCount++;
                 }
 
@@ -103,6 +103,9 @@ public class Extractor {
 
         }
     };
+
+    // string types
+    public static String HTTPHeader="HTTP-header", TCP="TCP", UDP="UDP";
 
     //// ?? another thread can do a Pcap.breakloop
 
